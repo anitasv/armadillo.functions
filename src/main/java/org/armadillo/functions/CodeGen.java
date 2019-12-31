@@ -65,11 +65,11 @@ public class CodeGen implements Runnable {
                 return "Func" + (java ? "tion" : "");
             }
         } else {
-           if (r == Boolean.TYPE) {
-               return classPart("", t) + "Pred" + (java ? "icate" : "");
-           } else {
-               return classPart("", t) + classPart("To", r) + "Func" + (java ? "tion" : "");
-           }
+            if (r == Boolean.TYPE) {
+                return classPart("", t) + "Pred" + (java ? "icate" : "");
+            } else {
+                return classPart("", t) + classPart("To", r) + "Func" + (java ? "tion" : "");
+            }
         }
     }
 
@@ -88,8 +88,7 @@ public class CodeGen implements Runnable {
     private boolean hasJavaEquiv(Class<?> t, Class<?> r) {
         String javaClassName = className(t, r, true);
         try {
-            Class<?> javaClass = Class.forName("java.util.function." + javaClassName);
-            return true;
+            return Class.forName("java.util.function." + javaClassName) != null;
         } catch (ClassNotFoundException e) {
             return false;
         }
